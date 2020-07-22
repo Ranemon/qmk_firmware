@@ -23,7 +23,7 @@ enum custom_keycodes {
     TMB_MODE,
 };
 
-enum encoder_offsets {
+enum encoder_names {
     ENCODER_LEFT = 0,
     ENCODER_RIGHT,
 };
@@ -43,149 +43,83 @@ enum encoder_offsets {
     K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A  \
   ) \
   LAYOUT_wrapper( \
-      _______, K01, K02, K03, K04, K05,                                        K06, K07, K08, K09, K0A, KC_BSLS, \
-      _______, K11, K12, K13, K14, K15,                                        K16, K17, K18, K19, K1A, KC_QUOT, \
-      _______, K21, K22, K23, K24, K25, KC_CCCV, TG_GAME,  TMB_MODE, TMB_MODE, K26, K27, K28, K29, K2A, _______, \
-          ENC_MODE_L, KC_LGUI, SP_LOWR, TB_RAIS, KC_LCTL,  KC_RCTL,  EN_LOWR,  BK_RAIS, MS_DEL, ENC_MODE_R \
-    )
-#define LAYOUT_kyria_mods( \
-    K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, \
-    K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, \
-    K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A  \
-  ) \
-  LAYOUT_wrapper( \
-      _______, K01,         K02,         K03, K04, K05,                                        K06, K07, K08,         K09,         K0A, KC_BSLS, \
-      _______, LSFT_T(K11), K12,         K13, K14, K15,                                        K16, K17, K18,         K19, RSFT_T(K1A), KC_QUOT, \
-      _______, LCTL_T(K21), LALT_T(K22), K23, K24, K25, KC_CCCV, TG_GAME,  TMB_MODE, TMB_MODE, K26, K27, K28, RALT_T(K29), RCTL_T(K2A), _______, \
-                          ENC_MODE_L, KC_LGUI, SP_LOWR, TB_RAIS, KC_LCTL,  KC_RCTL,  EN_LOWR,  BK_RAIS, MS_DEL, ENC_MODE_R \
+      KC_ESC,   K01,  K02,  K03,  K04,  K05,                                           K06,  K07,  K08,  K09,  K0A,  KC_BSLS, \
+      KC_LSFT,  K11,  K12,  K13,  K14,  K15,                                           K16,  K17,  K18,  K19,  K1A,  RSFT_T(KC_QUOT), \
+      KC_LCTL,  K21,  K22,  K23,  K24,  K25,  KC_CCCV, TG_GAME,  TMB_MODE, TMB_MODE, K26,  K27,  K28,  K29,  K2A,  RCTL_T(KC_MINS), \
+                ENC_MODE_L, KC_LALT, SP_LOWR, TB_RAIS, KC_LGUI,  KC_EQL, EN_LOWR, BK_RAIS, KC_DEL, ENC_MODE_R \
     )
 /* Re-pass though to allow templates to be used */
 #define LAYOUT_kyria_base_wrapper(...)       LAYOUT_kyria_base(__VA_ARGS__)
-#define LAYOUT_kyria_mods_wrapper(...)       LAYOUT_kyria_mods(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [_QWERTY] = LAYOUT_kyria_mods_wrapper(
+    [_QWERTY] = LAYOUT_kyria_base_wrapper(
         _________________QWERTY_L1_________________, _________________QWERTY_R1_________________,
         _________________QWERTY_L2_________________, _________________QWERTY_R2_________________,
         _________________QWERTY_L3_________________, _________________QWERTY_R3_________________
     ),
-#ifdef ENABLE_LAYOUT_COLEMAK
-    [_COLEMAK] = LAYOUT_kyria_mods_wrapper(
+
+    [_COLEMAK] = LAYOUT_kyria_base_wrapper(
         _________________COLEMAK_L1________________, _________________COLEMAK_R1________________,
         _________________COLEMAK_L2________________, _________________COLEMAK_R2________________,
         _________________COLEMAK_L3________________, _________________COLEMAK_R3________________
     ),
-#endif
-#ifdef ENABLE_LAYOUT_COLEMAK_DH
-    [_COLEMAK_DH] = LAYOUT_kyria_mods_wrapper(
-        ______________COLEMAK_MOD_DH_L1____________, ______________COLEMAK_MOD_DH_R1____________,
-        ______________COLEMAK_MOD_DH_L2____________, ______________COLEMAK_MOD_DH_R2____________,
-        ______________COLEMAK_MOD_DH_L3____________, ______________COLEMAK_MOD_DH_R3____________
-    ),
-#endif
-#ifdef ENABLE_LAYOUT_COLEMAK_DHM
-    [_COLEMAK_DHM] = LAYOUT_kyria_mods_wrapper(
-        _____________COLEMAK_MOD_DHM_L1____________, _____________COLEMAK_MOD_DHM_R1____________,
-        _____________COLEMAK_MOD_DHM_L2____________, _____________COLEMAK_MOD_DHM_R2____________,
-        _____________COLEMAK_MOD_DHM_L3____________, _____________COLEMAK_MOD_DHM_R3____________
-    ),
-#endif
-#ifdef ENABLE_LAYOUT_DVORAK
-    [_DVORAK] = LAYOUT_kyria_mods_wrapper(
+
+    [_DVORAK] = LAYOUT_kyria_base_wrapper(
         _________________DVORAK_L1_________________, _________________DVORAK_R1_________________,
         _________________DVORAK_L2_________________, _________________DVORAK_R2_________________,
         _________________DVORAK_L3_________________, _________________DVORAK_R3_________________
     ),
-#endif
-#ifdef ENABLE_LAYOUT_WORKMAN
-    [_WORKMAN] = LAYOUT_kyria_mods_wrapper(
+
+    [_WORKMAN] = LAYOUT_kyria_base_wrapper(
         _________________WORKMAN_L1________________, _________________WORKMAN_R1________________,
         _________________WORKMAN_L2________________, _________________WORKMAN_R2________________,
         _________________WORKMAN_L3________________, _________________WORKMAN_R3________________
     ),
-#endif
-#ifdef ENABLE_LAYOUT_NORMAN
-    [_NORMAN] = LAYOUT_kyria_mods_wrapper(
+
+    [_NORMAN] = LAYOUT_kyria_base_wrapper(
         _________________NORMAN_L1_________________, _________________NORMAN_R1_________________,
         _________________NORMAN_L2_________________, _________________NORMAN_R2_________________,
         _________________NORMAN_L3_________________, _________________NORMAN_R3_________________
     ),
-#endif
-    [_GAME] = LAYOUT_wrapper(
-      GN_ESC,  __________________GAME_L1__________________,                                      _________________QWERTY_R1_________________, _______,
-      KC_LSFT, __________________GAME_L2__________________,                                      _________________QWERTY_R2_________________, _______,
-      KC_LCTL, __________________GAME_L3__________________, _______, _______,  _______, _______, _________________QWERTY_R3_________________, _______,
-                           ENC_MODE_L, KC_LALT, KC_SPC, GN_TAB, MO(_GAMENUM),  KC_EQL, TG_GNAV, KC_ENT, KC_DEL, ENC_MODE_R
-    ),
 
-    [_GAMENAV] = LAYOUT_wrapper(
-      _______, ___________________BLANK___________________,                                     ___________________BLANK___________________, _______,
-      _______, ___________________BLANK___________________,                                     _________________GAMENAV_1_________________, _______,
-      _______, ___________________BLANK___________________, _______, _______, _______, _______, _________________GAMENAV_2_________________, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    [_GAME] = LAYOUT_wrapper(
+      LT(_GAMENUM, KC_T), __________________GAME_L1__________________,                                       _________________QWERTY_R1_________________, KC_BSLS,
+      LT(_GAMENUM, KC_G), __________________GAME_L2__________________,                                       _________________QWERTY_R2_________________, KC_RSFT,
+      LT(_GAMENUM, KC_B), __________________GAME_L3__________________, KC_NO, _______,  TMB_MODE, KC_NO, _________________QWERTY_R3_________________, KC_RCTL,
+                      ENC_MODE_L, KC_LALT, KC_SPC, LT(_GAMENUM, KC_TAB), MO(_GAMENUM),  KC_EQL, KC_ENT, KC_BSPC, KC_DEL, ENC_MODE_R
     ),
 
     [_GAMENUM] = LAYOUT_wrapper(
-      _______, _________________GAMENUM_L1________________,                                     _________________GAMENUM_R1________________, _______,
-      _______, _________________GAMENUM_L2________________,                                     _________________GAMENUM_R2________________, _______,
-      _______, _________________GAMENUM_L3________________, _______, _______, _______, _______, _________________GAMENUM_R3________________, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-
+      _______,  KC_NO,  KC_1,   KC_2,   KC_3,   KC_NO,                                      KC_NO,  KC_F1,  KC_F2,  KC_F3,  KC_F10, KC_NO,
+      _______,  KC_0,   KC_4,   KC_5,   KC_6,   KC_NO,                                      KC_NO,  KC_F4,  KC_F5,  KC_F6,  KC_F11, _______,
+      _______,  KC_NO,  KC_7,   KC_8,   KC_9,   KC_NO,  KC_NO,  KC_NO,      KC_NO,  KC_NO,  KC_NO,  KC_F7,  KC_F8,  KC_F9,  KC_F12, _______,
+                          _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     ),
 
     [_LOWER] = LAYOUT_kyria_base_wrapper(
-      _________________LOWER_L1__________________,    _________________LOWER_R1__________________,
-      _________________LOWER_L2__________________,    _________________LOWER_R2__________________,
-      _________________LOWER_L3__________________,    _________________LOWER_R3__________________
+        _________________LOWER_L1__________________, _________________LOWER_R1__________________,
+        _________________LOWER_L2__________________, _________________LOWER_R2__________________,
+        _________________LOWER_L3__________________, _________________LOWER_R3__________________
     ),
 
     [_RAISE] = LAYOUT_kyria_base_wrapper(
-      _________________RAISE_L1__________________,    _________________RAISE_R1__________________,
-      _________________RAISE_L2__________________,    _________________RAISE_R2__________________,
-      _________________RAISE_L3__________________,    _________________RAISE_R3__________________
+        _________________RAISE_L1__________________, _________________RAISE_R1__________________,
+        _________________RAISE_L2__________________, _________________RAISE_R2__________________,
+        _________________RAISE_L3__________________, _________________RAISE_R3__________________
     ),
 
     [_ADJUST] = LAYOUT_kyria_base_wrapper(
-      _________________ADJUST_L1_________________,    _________________ADJUST_R1_________________,
-      _________________ADJUST_L2_________________,    _________________ADJUST_R2_________________,
-      _________________ADJUST_L3_________________,    _________________ADJUST_R3_________________
-    ),
-
-    [_MOUSE] = LAYOUT_kyria_base_wrapper(
-      ___________________KC_NO___________________,    __________________MOUSE1___________________,
-      ___________________KC_NO___________________,    __________________MOUSE2___________________,
-      ___________________KC_NO___________________,    __________________MOUSE3___________________
+        _________________ADJUST_L1_________________, _________________ADJUST_R1_________________,
+        _________________ADJUST_L2_________________, _________________ADJUST_R2_________________,
+        _________________ADJUST_L3_________________, _________________ADJUST_R3_________________
     ),
 };
 // clang-format on
 
-#if defined(OLED_DRIVER_ENABLE) && defined(OLED_ANIMATIONS_ENABLE)
-static bool     oled_showing_info;
-static uint16_t oled_info_timer;
-#endif
-
-layer_state_t layer_state_set_keymap(layer_state_t state) {
-    layer_state_t new_state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-#ifdef OLED_ANIMATIONS_ENABLE
-    // If entering or leaving game mode, show info
-    if (IS_LAYER_ON_STATE(state, _GAME) || (IS_LAYER_ON(_GAME) && !IS_LAYER_ON_STATE(state, _GAME))) {
-        oled_info_timer = timer_read();
-    }
-#endif
-    return new_state;
-}
-
-layer_state_t default_layer_state_set_keymap(layer_state_t state) {
-#ifdef OLED_ANIMATIONS_ENABLE
-    oled_info_timer = timer_read();
-#endif
-    return state;
-}
+layer_state_t layer_state_set_keymap(layer_state_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
 
 #ifdef THUMBSTICK_ENABLE
-void thumbstick_init_keymap(void) { thumbstick_mode_set(THUMBSTICK_MODE_SCROLL); }
-
 bool process_record_keymap_thumbstick(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case TMB_MODE:
@@ -198,84 +132,26 @@ bool process_record_keymap_thumbstick(uint16_t keycode, keyrecord_t *record) {
 #endif
 
 #ifdef OLED_DRIVER_ENABLE
-oled_rotation_t oled_init_keymap(oled_rotation_t rotation) {
-#    ifdef OLED_ANIMATIONS_ENABLE
-    oled_showing_info = false;
-    oled_info_timer   = timer_read() + OLED_INFO_TIMEOUT;
-#    endif
-    return OLED_ROTATION_180;
-}
-
-#    ifdef OLED_ANIMATIONS_ENABLE
-void render_status_main(void) {
-    if (IS_LAYER_ON(_ADJUST) || timer_elapsed(oled_info_timer) <= OLED_INFO_TIMEOUT) {
-        if (!oled_showing_info) {
-            oled_clear();
-#        ifdef OLED_ANIM_STARFIELD
-            set_starfield_center();
-#        endif
-            oled_showing_info = true;
-        }
-        render_layout();
-        render_layer();
-#        ifdef ENCODER_ENABLE
-        render_encoders();
-#        endif
-#        ifdef THUMBSTICK_ENABLE
-        render_thumbstick();
-#        endif
-        render_mac_mode();
-    } else {
-        if (oled_showing_info) {
-            oled_clear();
-            oled_showing_info = false;
-        }
-#        if defined(OLED_ANIM_STARFIELD)
-        render_starfield();
-#        elif defined(OLED_ANIM_IMAGE_BOUNCE)
-        render_image_bounce();
-#        endif
-    }
-}
-
-bool process_record_keymap_oled(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        switch (keycode) {
-#        ifdef THUMBSTICK_ENABLE
-            case TMB_MODE:
-#        endif
-#        ifdef ENCODER_ENABLE
-            case ENC_MODE_L ... ENC_MODE_R:
-#        endif
-                oled_info_timer = timer_read();
-                break;
-            default:
-#        ifdef OLED_ANIM_STARFIELD
-                starfield_speed_set(starfield_speed_get() + 8);
-#        endif
-                break;
-        }
-    }
-    return true;
-}
-#    endif  // OLED_ANIMATIONS_ENABLE
-#endif  // OLED_DRIVER_ENABLE
+oled_rotation_t oled_init_keymap(oled_rotation_t rotation) { return OLED_ROTATION_180; }
+#endif
 
 #ifdef ENCODER_ENABLE
 void encoder_init_keymap(void) {
-    encoder_mode_set(ENCODER_HAND_LEFT, ENC_MODE_VOLUME);
-    encoder_mode_set(ENCODER_HAND_RIGHT, ENC_MODE_LEFT_RIGHT);
+    encoder_mode_hand_set(ENCODER_HAND_LEFT, 0, ENC_MODE_VOLUME);
+    encoder_mode_hand_set(ENCODER_HAND_RIGHT, 0, ENC_MODE_LEFT_RIGHT);
 }
 
 bool process_record_keymap_encoder(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case ENC_MODE_L:
-                encoder_mode_next(ENCODER_HAND_LEFT);
+                encoder_mode_hand_next(ENCODER_HAND_LEFT, 0);
                 return false;
+                break;
             case ENC_MODE_R:
-                encoder_mode_next(ENCODER_HAND_RIGHT);
+                encoder_mode_hand_previous(ENCODER_HAND_RIGHT, 0);
                 return false;
+                break;
         }
     }
     return true;

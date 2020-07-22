@@ -34,12 +34,6 @@
 #ifdef OLED_DRIVER_ENABLE
 #    define OLED_DISPLAY_128X64
 
-#    ifdef OLED_CUSTOM_TIMEOUT
-#        undef OLED_CUSTOM_TIMEOUT
-#        define OLED_CUSTOM_TIMEOUT 30000
-#    endif
-#    define OLED_INFO_TIMEOUT 2000
-
 #    define OLED_ANIM_STARFIELD
 #    define OLED_ANIM_STARFIELD_WANDER
 // #    define OLED_ANIM_STARFIELD_DUALLAYER
@@ -49,6 +43,7 @@
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
 #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#    define RGBLIGHT_EFFECT_KNIGHT
 #    define RGBLIGHT_LED_MAP \
         { 0, 1, 2, 9, 8, 7, 4, 3, 5, 6, 19, 18, 17, 10, 11, 12, 15, 16, 14, 13 }  // Orients Kyria LEDs to a circle around both halves.
 #endif

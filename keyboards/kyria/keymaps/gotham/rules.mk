@@ -1,8 +1,7 @@
-CONSOLE_ENABLE	       = no
-MOUSEKEY_ENABLE        = yes
+CONSOLE_ENABLE	       = yes
+MOUSEKEY_ENABLE        = no
 ENCODER_ENABLE         = yes
 RGBLIGHT_ENABLE        = no
 OLED_DRIVER_ENABLE     = yes
-OLED_ANIMATIONS_ENABLE = no
+OLED_ANIMATIONS_ENABLE = yes
 THUMBSTICK_ENABLE  	   = yes
-COMBO_ENABLE           = yes
