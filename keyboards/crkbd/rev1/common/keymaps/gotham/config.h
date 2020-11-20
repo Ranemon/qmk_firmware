@@ -43,7 +43,13 @@
 #    define OLED_ROTATION OLED_ROTATION_270
 #    define OLED_INFO_TIMEOUT 2000
 
-#define IGNORE_MOD_TAP_INTERRUPT
+#    ifdef OLED_ANIMATIONS_ENABLE
+#        define OLED_ANIM_STARFIELD
+#        define OLED_ANIM_STARFIELD_WANDER
+// #        define OLED_ANIM_STARFIELD_DUALLAYER
+// #        define OLED_ANIM_IMAGE_BOUNCE
+#    endif
+#endif
 
 #define NO_ACTION_ONESHOT
 
